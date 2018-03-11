@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { logout } from './actions'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+import { logout, authCodeLogout } from './actions'
 
 import FooterMenu from './components/FooterMenu'
 import MainPage from './components/MainPage'
@@ -8,6 +10,7 @@ import Vote from './components/Vote/Vote'
 import VoteRegister from './components/Vote/VoteRegister'
 import Register from './components/Register'
 import Voter from './components/Voter'
+import AdminMng from './components/AdminMng'
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +27,7 @@ class App extends Component {
   }
 
   onUnload(event) { // the method that will be used for both add and remove event
+    authCodeLogout()
     logout()
     this.switchPage('MainPage')
     this.toggleFooterMenu(false)
@@ -49,27 +53,30 @@ class App extends Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        <div style={styles.inner}>
-          <span style={{ fontSize: this.state.currentPage === 'MainPage' ? '2.2rem' : '1.7rem', marginTop:30 }}>성공회대학교 투표시스템</span>
-          {this.state.currentPage === 'MainPage' && <MainPage toggleFooterMenu={this.toggleFooterMenu} switchPage={this.switchPage} />}
-          {this.state.currentPage === 'Vote' && <Vote switchPage={this.switchPage} />}
-          {this.state.currentPage === 'VoteRegister' && <VoteRegister switchPage={this.switchPage} />}
-          {this.state.currentPage === 'CandidateRegister' && <Register />}
-          {this.state.currentPage === 'AdminRegister' && <Register admin />}
-          {this.state.currentPage === 'Voter' && <Voter />}
+      <MuiThemeProvider>
+        <div style={styles.container}>
+          <div style={styles.inner}>
+            <span style={{ fontSize: this.state.currentPage === 'MainPage' ? '2.2rem' : '1.7rem', marginTop: 30 }}>성공회대학교 투표시스템</span>
+            {this.state.currentPage === 'MainPage' && <MainPage toggleFooterMenu={this.toggleFooterMenu} switchPage={this.switchPage} />}
+            {this.state.currentPage === 'Vote' && <Vote switchPage={this.switchPage} />}
+            {this.state.currentPage === 'VoteRegister' && <VoteRegister switchPage={this.switchPage} />}
+            {this.state.currentPage === 'CandidateRegister' && <Register />}
+            {this.state.currentPage === 'AdminRegister' && <Register admin />}
+            {this.state.currentPage === 'Voter' && <Voter switchPage={this.switchPage}/>}
+            {this.state.currentPage === 'AdminMng' && <AdminMng />}
+          </div>
+          <div style={{
+            width: '100%',
+            position: 'fixed',
+            bottom: 0,
+            paddingBottom: '7vh',
+            backgroundColor: '#FFF',
+            textAlign: 'center',
+          }}>
+            {this.state.menuVisible && <FooterMenu onPress={this.switchPage} toggleFooterMenu={this.toggleFooterMenu} />}
+          </div>
         </div>
-        <div style={{
-          width: '100%',
-          position: 'fixed',
-          bottom: 0,
-          paddingBottom: '7vh',
-          backgroundColor: '#FFF',
-          textAlign: 'center',
-        }}>
-          {this.state.menuVisible && <FooterMenu onPress={this.switchPage} toggleFooterMenu={this.toggleFooterMenu} />}
-        </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

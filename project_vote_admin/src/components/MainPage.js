@@ -13,20 +13,16 @@ class MainPage extends Component {
     }
 
     this.onClickLoginBtn = this.onClickLoginBtn.bind(this)
+    this.props.toggleFooterMenu(true)
   }
 
   async onClickLoginBtn() {
     const id = this.state.id
     const password = this.state.password
     let result = await login({ id, password })
-    // console.log(result.data.data)
     if (result && result.data) {
       alert(result.data.msg)
-      if (result.data.data)
-        localStorage.setItem('token', result.data.data)
-      // console.log('login token : ',localStorage.getItem('token'))
       if (result.data.status === "SUCCESS") {
-        this.props.toggleFooterMenu(true)
         this.props.switchPage('Vote')
       }
     } else {
@@ -37,7 +33,6 @@ class MainPage extends Component {
 
   render() {
     return (
-
       <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -45,7 +40,8 @@ class MainPage extends Component {
         justifyContent: 'center',
         transform: 'scale(1.5) translate(0px, 30px)'
       }}>
-        <div style={{ fontSize: '1rem', marginTop: '2vw', marginBottom: '1vw' }}>선거 관리 위원회 로그인</div>
+        <div style={{ fontSize: '1rem', marginTop: '2vw' }}>선거 관리 위원회 로그인</div>
+        <div style={{ fontSize: '0.8rem', marginTop: '20px', marginBottom: '1vw' }}>로그인해야 서비스이용이 가능합니다</div>
         <div style={wrapperStyle}>
           <input type="text" style={inputStyle}
             onChange={(event) => {

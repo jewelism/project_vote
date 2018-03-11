@@ -22,13 +22,13 @@ class CandidatesRegister extends Component {
     if (this.props.admin) {
       uploadAdminExcelFile(this.state.file)
         .then((result) => {
-          // console.log(result)
+          console.log(result)
           result.data && this.setState({ resultMsg: result.data.msg })
         })
     } else {
       uploadVoterExcelFile(this.state.file)
         .then((result) => {
-          // console.log(result)
+          console.log(result)
           result.data && this.setState({ resultMsg: result.data.msg })
         })
     }

@@ -4,6 +4,7 @@
   "description": "skhu vote system for client with graph",
   "author": "jewelism <boseokjung@gmail.com>",
   "private": true,
+  "homepage": "/vote_d3",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

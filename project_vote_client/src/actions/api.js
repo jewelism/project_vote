@@ -32,7 +32,7 @@ export const postVote = (myVoteList) => {
         req.voteList.push(vote)
       }
       let result = await axios.post(`${URL}/${VOTE}`, {
-        req,
+        body: req,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')

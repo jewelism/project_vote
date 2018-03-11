@@ -39,11 +39,12 @@ export default {
       // console.log(this.authCode, result)
       this.toggleLoading(false)
       if (result) {
+        console.log('result:',result)
         this.msg = result.data.msg
-        localStorage.setItem('token', result.data.jwt)
+        localStorage.setItem('token', result.data.data.jwt)
         if(result.data.data){
           localStorage.setItem('authCode', this.authCode)
-          this.switchPage(1, result.data.data)
+          this.switchPage(1, result.data.data.list)
         }
       } else {
         alert('오류가 발생했습니다.\n관리자에게 문의하세요')

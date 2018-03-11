@@ -74,6 +74,7 @@ export default {
           this.toggleLoading(true)
           console.log(this.myVotedList)
           let result = await postVote(this.myVotedList) 
+          console.log(result)
           if(result) { //exit vote
             this.switchPage(2)
           } else {
