@@ -18,10 +18,9 @@ export const postVote = (myVoteList) => {
   return new Promise(async (resolve) => {
     try {
       let req = {
-        code: null,
+        code: localStorage.getItem('authCode'),
         voteList: []
       }
-      req.code = localStorage.getItem('authCode')
       for (const [index, voteObj] of myVoteList) {
         let vote = {
           voteId: null,
@@ -38,11 +37,7 @@ export const postVote = (myVoteList) => {
           'Authorization': localStorage.getItem('token')
         }
       })
-      if (result) {
-        resolve(true)
-      } else {
-        resolve(false)
-      }
+      resolve(result)
     } catch (error) {
       resolve(false)
     }

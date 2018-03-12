@@ -75,8 +75,11 @@ export default {
           console.log(this.myVotedList)
           let result = await postVote(this.myVotedList) 
           console.log(result)
+          alert(result.msg)
           if(result) { //exit vote
-            this.switchPage(2)
+            if(result.status==='SUCCESS'){
+              this.switchPage(2)
+            }
           } else {
             alert('오류가 발생했습니다!\n관리자에게 문의해주세요')
             return false
