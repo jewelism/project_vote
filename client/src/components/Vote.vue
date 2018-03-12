@@ -73,7 +73,7 @@ export default {
         if (this.currentVote + 1 == this.responseData.length) { //call post api
           this.toggleLoading(true)
           console.log(this.myVotedList)
-          let result = await postVote(this.myVotedList) 
+          let result = await postVote(this.myVotedList, this.responseData) 
           console.log(result)
           alert(result.msg)
           if(result) { //exit vote

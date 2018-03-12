@@ -111,3 +111,15 @@ export const voteCheck = (id) => {
     }
   })
 }
+
+export const getVoteResult = ()=>{
+  return new Promise(async (resolve)=>{
+    try {
+      let res = await axios.get(`http://bghgu.tk:3000/info/result`)
+      resolve(res)
+    } catch (error) {
+      console.warn(error)
+      resolve(false)
+    }
+  })
+}
