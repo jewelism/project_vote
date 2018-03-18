@@ -20,12 +20,12 @@ export const postVote = (myVoteList, resList) => {
       code: localStorage.getItem('authCode'),
       voteList: []
     }
-    console.log(myVoteList, resList)
+    // console.log(myVoteList, resList)
 
     const voteIdList = resList.map((res) => {
       return res.voteId
     })
-    console.log(voteIdList)
+    // console.log(voteIdList)
 
     const voteList = myVoteList.map((voteObj, index) => {
       return ({
@@ -33,13 +33,13 @@ export const postVote = (myVoteList, resList) => {
         candidateId: voteObj.candidateId
       })
     })
-    console.log('important:', voteList)
+    // console.log('important:', voteList)
     req.voteList = voteList
 
-    console.log('req:', req)
+    // console.log('req:', req)
     
     const token = localStorage.getItem('token')
-    console.log(token)
+    // console.log(token)
     
     fetch(`${URL}/${VOTE}`, {
       method: 'POST',

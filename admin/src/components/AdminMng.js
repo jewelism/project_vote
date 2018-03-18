@@ -85,7 +85,7 @@ class AdminMng extends Component {
                   style={Object.assign({}, flexRow, this.isHover(index) ? hover : notHover)}
                   key={index}
                 >
-                  <td style={Object.assign({ width: widthList[0], padding: 10 }, flexAlignCenter)}>{item.type == 1 ? '선관위원장' : '선관위원'}</td>
+                  <td style={Object.assign({ width: widthList[0], padding: 10 }, flexAlignCenter)}>{item.type === 1 ? '선관위원장' : '선관위원'}</td>
                   <td style={Object.assign({ width: widthList[1], padding: 10 }, flexAlignCenter)}>{item.departmentName}</td>
                   <td style={Object.assign({ width: widthList[2], padding: 10 }, flexAlignCenter)}>{item.name}</td>
                 </tr>

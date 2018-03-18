@@ -19,7 +19,7 @@ class Vote extends Component {
       "leaderDepName": null,
       "subLeaderName": null,
       "subLeaderDepName": "",
-      "photo": null,
+      // "photo": null,
     }
 
     this.onClickRegister = this.onClickRegister.bind(this)
@@ -29,6 +29,10 @@ class Vote extends Component {
 
   componentDidMount() {
     //get vote list
+    this.callVoteList();
+  }
+
+  callVoteList=()=>{
     const token = localStorage.getItem('token')
     getVoteList(token)
       .then((result) => {
@@ -57,8 +61,9 @@ class Vote extends Component {
         "leaderDepName": this.state.leaderDepName,
         "subLeaderName": this.state.subLeaderName,
         "subLeaderDepName": this.state.subLeaderDepName,
-        "photo": this.state.photo
+        // "photo": this.state.photo
       }
+      // console.log(reqBody)
       saveCandidates(selectedVoteId, reqBody)
         .then((result) => {
           if (result) {
@@ -68,9 +73,10 @@ class Vote extends Component {
               "leaderName": null,
               "leaderDepName": null,
               "subLeaderName": null,
-              "subLeaderDepName": "",
-              "photo": null,
+              "subLeaderDepName": null,
+              // "photo": null,
             })
+            // console.log(result)
             alert('후보자 등록 완료')
           } else {
             alert('오류 발생')
@@ -85,10 +91,12 @@ class Vote extends Component {
     deleteVote(this.state.selectedVoteId)
       .then((result) => {
         if (result) {
-          alert(result.data.msg)
+        // console.log(result)
+          alert(result.msg)
         } else {
           alert('오류 발생')
         }
+        this.callVoteList();
       })
   }
 
@@ -134,7 +142,7 @@ class Vote extends Component {
                   onClick={() => this.onClickTr(item)}
                   onMouseOver={() => { this.setState({ hoverIndex: index }) }}
                   onMouseOut={() => { this.setState({ hoverIndex: -1 }) }}
-                  style={Object.assign({}, flexRow, this.isHover(index) ? hover : notHover)}
+                  style={Object.assign({}, flexRow, this.isHover(index) ? hover : notHover, this.state.selectedVoteId===item.voteId ? hover : {})}
                   key={index}
                 >
                   <td style={Object.assign({ width: widthList[0], padding: 10 }, flexAlignCenter)}>{item.voteId}</td>
@@ -163,11 +171,15 @@ class Vote extends Component {
               onChange={e => this.setState({ subLeaderName: e.target.value })}
               placeholder="부회장 이름을 입력하세요"
             />
-            <input
+            <input type="text" style={inputStyle}
+              onChange={e => this.setState({ subLeaderDepName: e.target.value })}
+              placeholder="부회장 학부를 입력하세요"
+            />
+            {/* <input
               type="file"
               onChange={e => this.setState({ photo: e.target.files[0] })}
               style={inputStyle}
-            />
+            /> */}
             <button onClick={this.onClickSaveCandidate} style={Object.assign({ alignSelf: 'center' }, buttonStyle)}>등록</button>
           </div>
         }

@@ -93,17 +93,25 @@ export const uploadAdminExcelFile = function (file) {
   })
 }
 
-
 export const saveCandidates = function (voteId, body) {
   return new Promise((resolve) => {
+    // let bodyFormData = new FormData()
+    // bodyFormData.set('file', file)
+    console.log('api req body:', body)
+
     fetch(`${URI}/candidate/${voteId}`, {
       method: 'POST',
       headers: {
         // 'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form- data',
+        // 'Content-Disposition': form-data; name="myJsonString",
+        // 'Content-Disposition': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
+        // 'Content-Transfer-Encoding': 'base64',
         'Authorization': localStorage.getItem('token'),
       },
-      body,
+      body : JSON.stringify(body),
     }).then((response) => {
       return response.json()
     }).then((responseJson) => {

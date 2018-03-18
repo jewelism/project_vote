@@ -16,6 +16,13 @@ class MainPage extends Component {
     this.props.toggleFooterMenu(true)
   }
 
+  _handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.onClickLoginBtn()
+      // console.log('do validate');
+    }
+  }
+
   async onClickLoginBtn() {
     const id = this.state.id
     const password = this.state.password
@@ -44,12 +51,14 @@ class MainPage extends Component {
         <div style={{ fontSize: '0.8rem', marginTop: '20px', marginBottom: '1vw' }}>로그인해야 서비스이용이 가능합니다</div>
         <div style={wrapperStyle}>
           <input type="text" style={inputStyle}
+            onKeyPress={this._handleKeyPress}
             onChange={(event) => {
               this.setState({ id: event.target.value })
             }} />
         </div>
         <div style={wrapperStyle}>
           <input type="password" style={inputStyle}
+            onKeyPress={this._handleKeyPress}
             onChange={(event) => {
               this.setState({ password: event.target.value })
             }}

@@ -7,11 +7,6 @@
         <h3>선거권 확인</h3>
         <h4>{{ msg }}</h4>
       </div>
-      
-      <div v-if="checkLoaded">
-        <h3>선거 여부 확인</h3>
-        <h4>{{ msg2 }}</h4>
-      </div>
     </div>
   </div>
 </template>
@@ -26,7 +21,6 @@ export default {
   data () {
     return {
       suffrageLoaded: false,
-      checkLoaded: false,
       id: '',
       msg: '',
       msg2: '',
@@ -45,17 +39,6 @@ export default {
           }
           this.suffrageLoaded = true
         })
-      
-        voteCheck(this.id)
-          .then((result2)=>{
-            if(result2){
-              // console.log(result2)
-              this.msg2 = result2.data.message
-            } else {
-              this.msg2 = 'API 오류 발생'
-            }
-            this.checkLoaded = true
-          })
       }
     }
   },
@@ -73,7 +56,6 @@ export default {
     id: function (val, oldVal) {
       if(val.length<4){
         this.suffrageLoaded = false
-        this.checkLoaded = false
       } else {
         this.inputId$.next(val)
       }
