@@ -67,10 +67,9 @@ class Vote extends Component {
     this.startYear = date.getFullYear()
     this.startMonth = date.getMonth()
     this.startDate = date.getDate()
-    
   }
 
-  startTimeInputHandler= (e, t)=>{
+  startTimeInputHandler = (e, t) => {
     this.startHour = t.getHours()
     this.startMin = t.getMinutes()
   }
@@ -79,10 +78,9 @@ class Vote extends Component {
     this.endYear = date.getFullYear()
     this.endMonth = date.getMonth()
     this.endDate = date.getDate()
-    
   }
 
-  endTimeInputHandler= (e, t)=>{
+  endTimeInputHandler = (e, t) => {
     this.endHour = t.getHours()
     this.endMin = t.getMinutes()
   }
@@ -101,6 +99,7 @@ class Vote extends Component {
       .then((result) => {
         if (result) {
           this.setState({ resultText: result.data.msg })
+          this.props.switchPage('Vote')
         } else {
           alert('오류 발생')
         }
@@ -132,9 +131,9 @@ class Vote extends Component {
             </select>
           </label>
           <DatePicker hintText="투표 시작 날짜 선택" onChange={this.startDateInputHandler} />
-          <TimePicker hintText="투표 시작 시간 선택" onChange={this.startTimeInputHandler}/>
+          <TimePicker hintText="투표 시작 시간 선택" onChange={this.startTimeInputHandler} />
           <DatePicker hintText="투표 종료 날짜 선택" onChange={this.endDateInputHandler} />
-          <TimePicker hintText="투표 종료 시간 선택" onChange={this.endTimeInputHandler}/>
+          <TimePicker hintText="투표 종료 시간 선택" onChange={this.endTimeInputHandler} />
           <input type="submit" value="등록" style={buttonStyle} />
         </form>
         <div>

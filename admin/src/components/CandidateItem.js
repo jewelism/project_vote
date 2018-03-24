@@ -36,15 +36,15 @@ class CandidateItem extends Component {
         `}
         </style>
         <div className="item" style={flexColumn}>
-          <img src={item.photo} className="picture" alt="후보자 이미지"/>
+          {/* <img src={item.photo} className="picture" alt=""/> */}
           <h3>{item.campName}</h3>
           <h3>후보 {item.candidateId}번</h3>
-          <div style={rowStyle}>
+          <div style={Object.assign({}, rowStyle, { paddingBottom: 20 })}>
             <div style={Object.assign({}, itemStyle, flexColumn)}>
               <div>{item.leaderDeptName}</div>
               <span>{item.leaderName}</span>
             </div>
-            <div style={Object.assign({}, itemStyle, flexColumn)}>
+            <div style={Object.assign({}, itemStyle, flexColumn, )}>
               <div>{item.subLeaderDeptName}</div>
               <span>{item.subLeaderName}</span>
             </div>

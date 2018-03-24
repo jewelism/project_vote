@@ -1,4 +1,5 @@
 import axios from 'axios'
+// eslint-disable-next-line 
 import { BASE_URL, URL2, EMC } from '../constants/Api'
 
 // const URI = 'http://192.168.0.9:8080'

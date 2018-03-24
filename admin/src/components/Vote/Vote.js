@@ -32,7 +32,7 @@ class Vote extends Component {
     this.callVoteList();
   }
 
-  callVoteList=()=>{
+  callVoteList = () => {
     const token = localStorage.getItem('token')
     getVoteList(token)
       .then((result) => {
@@ -75,9 +75,11 @@ class Vote extends Component {
               "subLeaderName": null,
               "subLeaderDepName": null,
               // "photo": null,
+              candidates: []
             })
             // console.log(result)
             alert('후보자 등록 완료')
+            this.callVoteList()
           } else {
             alert('오류 발생')
           }
@@ -91,7 +93,7 @@ class Vote extends Component {
     deleteVote(this.state.selectedVoteId)
       .then((result) => {
         if (result) {
-        // console.log(result)
+          // console.log(result)
           alert(result.msg)
         } else {
           alert('오류 발생')
@@ -142,7 +144,7 @@ class Vote extends Component {
                   onClick={() => this.onClickTr(item)}
                   onMouseOver={() => { this.setState({ hoverIndex: index }) }}
                   onMouseOut={() => { this.setState({ hoverIndex: -1 }) }}
-                  style={Object.assign({}, flexRow, this.isHover(index) ? hover : notHover, this.state.selectedVoteId===item.voteId ? hover : {})}
+                  style={Object.assign({}, flexRow, this.isHover(index) ? hover : notHover, this.state.selectedVoteId === item.voteId ? hover : {})}
                   key={index}
                 >
                   <td style={Object.assign({ width: widthList[0], padding: 10 }, flexAlignCenter)}>{item.voteId}</td>
@@ -187,7 +189,7 @@ class Vote extends Component {
         <div>
           <button onClick={this.onClickDelete} style={Object.assign({ alignSelf: 'center' }, buttonStyle)}>선거 삭제</button>
         </div>
-        <div style={flexRow}>
+        <div style={Object.assign({}, flexRow, { flexWrap: 'wrap' })}>
           {this.state.candidates.map((candidate, index) => {
             return (
               <CandidateItem item={candidate} key={index} />

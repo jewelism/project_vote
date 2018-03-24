@@ -1,4 +1,5 @@
 import axios from 'axios'
+// eslint-disable-next-line 
 import { BASE_URL, URL2, EMC } from '../constants'
 
 // const URI = 'http://192.168.0.9:8080'
@@ -103,8 +104,8 @@ export const saveCandidates = function (voteId, body) {
       method: 'POST',
       headers: {
         // 'Accept': 'application/json',
-        // 'Content-Type': 'application/json',
-        'Content-Type': 'multipart/form- data',
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'multipart/form-data',
         // 'Content-Disposition': form-data; name="myJsonString",
         // 'Content-Disposition': 'multipart/form-data',
         // 'Content-Type': 'multipart/form-data',
