@@ -27,12 +27,11 @@ export default {
     }
   },
   methods: {
-    inputHandler: function () {
-      if(this.id.length!=0){
+    inputHandler() {
+      if(this.id.length != 0){
         getSuffrage(this.id)
-        .then((result)=>{
+        .then(result => {
           if(result){
-            // console.log(result)
             this.msg = result.data.message
           } else {
             this.msg = 'API 오류 발생'
@@ -48,12 +47,10 @@ export default {
   mounted(){
     this.inputId$
       .debounceTime(300)
-      .subscribe(id => {
-        this.inputHandler()
-      })
+      .subscribe(this.inputHandler)
   },
   watch: {
-    id: function (val, oldVal) {
+    id(val, oldVal) {
       if(val.length<4){
         this.suffrageLoaded = false
       } else {
