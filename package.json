@@ -1,5 +1,5 @@
 {
-  "name": "pub",
+  "name": "project_vote",
   "version": "1.0.0",
   "description": "integrated project vote",
   "author": "Jewelism",
@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "npm": "^6.3.0",
+    "start": "^5.1.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-material": "^1.0.0-beta-10.2",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
