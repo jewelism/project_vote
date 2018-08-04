@@ -1,8 +1,8 @@
-import { ADMIN_URL } from '../constants';
+import { ADMIN_URL, DS_ADMIN_URL } from '../constants';
 import Request from './Request';
 
 const AdminRequest = new Request(ADMIN_URL); //민국이꺼
-const DsAdminRequest = new Request(ADMIN_URL); //다슬이꺼 ds
+const DsAdminRequest = new Request(DS_ADMIN_URL); //다슬이꺼 ds
 
 export const emcCheck = id => DsAdminRequest.get(`emc/check/${id}`, {
   headers: {

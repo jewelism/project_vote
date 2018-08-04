@@ -9,7 +9,13 @@ class Request {
     return new Promise((resolve, reject) => {
       const URL = query ? `${this.url}/${uriParams}` : `${this.url}/${uriParams}${objToQuerystring(query)}`;
       fetch(URL, option)
-        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          if(res.ok)
+            return res.json()
+          else
+            reject(res)
+        })
         .then(resolve)
         .catch(reject);
     });
@@ -21,7 +27,12 @@ class Request {
         method: option.method ? option.method : 'POST',
         headers: option.headers || { 'Content-Type': 'application/json' },
         body: JSON.stringify(option.body)
-      }).then(res => res.json())
+      }).then(res => {
+        if(res.ok)
+            return res.json()
+          else
+            reject(res)
+      })
         .then(resolve)
         .catch(reject);
     });
@@ -40,7 +51,12 @@ class Request {
       fetch(`${this.url}/${uriParams}`, {
         method: 'POST',
         body: formData,
-      }).then(res => res.json())
+      }).then(res => {
+        if(res.ok)
+            return res.json()
+          else
+            reject(res)
+      })
         .then(resolve)
         .catch(reject);
     });

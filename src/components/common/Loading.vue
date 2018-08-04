@@ -16,15 +16,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .cube_container {
-  position: 'fixed';
+  position: fixed;
   top: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
+  height: 100vw;
+  width: 100vw;
 }
 
 .wandering_cube{
-  margin: 100px auto;
+  margin: 300px auto;
   width: 40px;
   height: 40px;
   position: relative;

@@ -1,23 +1,23 @@
 
-export const GRAPH = '/real-time'
-export const VOTE = '/vote'
-export const CANDIDATE = '/candidate'
-export const SUFFRAGE = '/suffrage'
-export const CHECK = '/check'
-export const RESULT = '/result'
+// export const GRAPH = '/real-time'
+// export const VOTE = '/vote'
+// export const CANDIDATE = '/candidate'
+// export const SUFFRAGE = '/suffrage'
+// export const CHECK = '/check'
+// export const RESULT = '/result'
 
 import Request from './Request';
 
-const StatusRequest = new Request('http://bghgu.tk:3000/info/');
-
+const StatusRequest = new Request('http://bghgu.tk:3000/info');
 export const getCandidateList = () => {
   return new Promise((resolve, reject) => {
     try {
+      const STATIC_PATH = '../../static/images/';
       const list = [
-        { id: 0, name: '정보석', picture: require('../assets/fairy.jpeg') },
-        { id: 1, name: '이승기', picture: require('../assets/ggobuk.jpeg') },
-        { id: 2, name: '배다슬', picture: require('../assets/pikachu.jpeg') },
-        { id: 3, name: '조민국', picture: require('../assets/strange.jpeg') },
+        { id: 0, name: '정보석', picture: require(`${STATIC_PATH}fairy.jpeg`) },
+        { id: 1, name: '이승기', picture: require(`${STATIC_PATH}ggobuk.jpeg`) },
+        { id: 2, name: '배다슬', picture: require(`${STATIC_PATH}pikachu.jpeg`) },
+        { id: 3, name: '조민국', picture: require(`${STATIC_PATH}strange.jpeg`) },
         { id: 4, name: 'test', picture: 'https://www.gstatic.com/webp/gallery3/1123123.png' },
       ]
       setTimeout(() => {

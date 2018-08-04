@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import Main from '../components/client/Main'
+import Main from '../layouts/client/Main';
 
 export default new Router({
   routes: [
