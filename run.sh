@@ -19,6 +19,7 @@ case $selectedNum in
 esac
 
 echo Message
-sed -i "service=${dev}" ./.env
+# sed -i "service=${dev}" .env
+sed -i "s/\(service=\).*/\1${dev}/" .env
 
-eval "npm i && npm start"
+eval "npm start"
