@@ -10,8 +10,8 @@ class Request {
       const URL = query ? `${this.url}/${uriParams}` : `${this.url}/${uriParams}${objToQuerystring(query)}`;
       fetch(URL, option)
         .then(res => res.json())
-        .then(res => resolve(res))
-        .catch(err => reject(err));
+        .then(resolve)
+        .catch(reject);
     });
   }
 
@@ -22,8 +22,8 @@ class Request {
         headers: option.headers || { 'Content-Type': 'application/json' },
         body: JSON.stringify(option.body)
       }).then(res => res.json())
-        .then(res => resolve(res))
-        .catch(err => reject(err));
+        .then(resolve)
+        .catch(reject);
     });
   }
 
@@ -41,8 +41,8 @@ class Request {
         method: 'POST',
         body: formData,
       }).then(res => res.json())
-        .then(res => resolve(res))
-        .catch(err => reject(err));
+        .then(resolve)
+        .catch(reject);
     });
   }
 }
