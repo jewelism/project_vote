@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <md-app>
-      <md-app-drawer md-permanent="clipped">
+      <md-app-drawer md-permanent="full">
         <side-menu :menuItems="menuItems"></side-menu>
       </md-app-drawer>
       <md-app-content>
@@ -40,7 +40,7 @@ export default {
 
 <style>
 .md-app {
-  min-height: 350px;
+  min-height: 100vh;
   border: 1px solid rgba(#000, .12);
 }
 </style>

@@ -12,7 +12,7 @@ const StatusRequest = new Request('http://bghgu.tk:3000/info');
 export const getCandidateList = () => {
   return new Promise((resolve, reject) => {
     try {
-      const STATIC_PATH = '../../static/images/';
+      const STATIC_PATH = '../assets/images/';
       const list = [
         { id: 0, name: '정보석', picture: require(`${STATIC_PATH}fairy.jpeg`) },
         { id: 1, name: '이승기', picture: require(`${STATIC_PATH}ggobuk.jpeg`) },

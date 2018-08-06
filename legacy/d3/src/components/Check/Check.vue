@@ -17,7 +17,6 @@ import { getSuffrage, voteCheck } from '../../actions'
 
 export default {
   name: 'Check',
-  props: ['toggleLoading'],
   data () {
     return {
       checkLoaded: false,
@@ -27,9 +26,9 @@ export default {
   },
   methods: {
     inputHandler: function () {
-      if(this.id.length!=0){
+      if(this.id.length != 0){
         voteCheck(this.id)
-          .then((result)=>{
+          .then(result => {
             if(result){
               // console.log(result)
               this.msg = result.data.message
@@ -47,9 +46,7 @@ export default {
   mounted(){
     this.inputId$
       .debounceTime(300)
-      .subscribe(id => {
-        this.inputHandler()
-      })
+      .subscribe(this.inputHandler)
   },
   watch: {
     id: function (val, oldVal) {

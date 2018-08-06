@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>투표 결과</h1>
+    <h2>{{errorMsg}}</h2>
     <div v-for="item in dataList" 
       :style="{ 
         // border: '1px solid gray', 
@@ -38,6 +39,7 @@ export default {
   data: () => ({
     dataList: [],
     maxValueList: [],
+    errorMsg: ''
   }),
   async mounted () {
     this.$eventBus.$emit('loading', true);
@@ -50,7 +52,7 @@ export default {
         alert('오류 발생\n관리자에게 문의하세요')
       }
     } catch(err) {
-      console.warn(err);
+      this.errorMsg = '서버에서 데이터를 불러올 수 없습니다.';
     } finally {
       this.$eventBus.$emit('loading', false);
     }
@@ -60,7 +62,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

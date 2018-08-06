@@ -10,7 +10,6 @@ class Request {
       const URL = query ? `${this.url}/${uriParams}` : `${this.url}/${uriParams}${objToQuerystring(query)}`;
       fetch(URL, option)
         .then(res => {
-          console.log(res);
           if(res.ok)
             return res.json()
           else

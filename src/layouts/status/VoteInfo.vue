@@ -17,9 +17,7 @@
           </div>
         </div>
       </div>
-      <div
-        v-for="(d, index) in data"
-      >
+      <div v-for="(d, index) in data">
         <div 
           @click="onClick(d.voteId)"
           @mouseover="hoverIndex=index"
@@ -42,6 +40,9 @@
         </div>
       </div>
     </div>
+    <h2 v-else>
+      {{errorMsg}}
+    </h2>
 
     <div v-if="listLoaded" class="itemWrapper">
       <CandidateItem
@@ -73,6 +74,7 @@ export default {
     candidateList: [],
     listLoaded: false,
     hoverIndex: -1,
+    errorMsg: '',
     style: {
       backgroundColor: 'transparent',
       cursor: 'auto',
@@ -131,7 +133,7 @@ export default {
         alert('데이터를 가져오는데 실패했습니다!')
       }
     } catch(err){
-      console.warn(err);
+      this.errorMsg = '서버에서 데이터를 불러올 수 없습니다.';
     } finally {
       this.loaded = true
       this.$eventBus.$emit('loading', false);

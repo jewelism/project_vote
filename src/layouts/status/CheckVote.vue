@@ -1,12 +1,15 @@
 <template>
   <div>
     <h1>선거 여부 확인</h1>
-    <input v-model="id" placeholder="인증코드를 입력하세요" @change="inputHandler">
+    <md-field md-inline>
+      <label>인증코드를 입력하세요</label>
+      <md-input v-model="id" @change="inputHandler"></md-input>
+    </md-field>
     <div>
       <div v-if="checkLoaded">
         <h3>선거 여부 확인</h3>
-        <h4>{{ msg }}</h4>
       </div>
+      <h4>{{ msg }}</h4>
     </div>
   </div>
 </template>
@@ -17,16 +20,14 @@ import { getSuffrage, voteCheck } from '../../api'
 
 export default {
   name: 'CheckVote',
-  data () {
-    return {
-      checkLoaded: false,
-      id: '',
-      msg: '',
-    }
-  },
+  data: () => ({
+    checkLoaded: false,
+    id: '',
+    msg: '',
+  }),
   methods: {
     inputHandler() {
-      if(this.id.length!=0){
+      if(this.id.length>0){
         voteCheck(this.id)
           .then(({data}) => {
             if(data){
@@ -37,6 +38,9 @@ export default {
             }
             this.checkLoaded = true;
           })
+          .catch(err => {
+            this.msg = '서버에서 데이터를 불러올 수 없습니다.';
+          });
       }
     }
   },
@@ -51,6 +55,7 @@ export default {
   watch: {
     id(val) {
       if(val.length < 4){
+        this.msg = '5글자 이상 입력하고 엔터키를 누르세요'
         this.checkLoaded = false;
       } else {
         this.inputId$.next(val);
@@ -59,7 +64,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>

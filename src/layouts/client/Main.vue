@@ -58,7 +58,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .msg {
-  margin-top: 3rem;
+  margin-top: 30px;
 }
 
 h1, h2 {
