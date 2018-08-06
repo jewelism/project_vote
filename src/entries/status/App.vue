@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <md-app>
-      <md-app-drawer md-permanent="full">
+      <md-app-drawer :style="{width: '200px'}" md-permanent="full">
         <side-menu :menuItems="menuItems"></side-menu>
       </md-app-drawer>
       <md-app-content>

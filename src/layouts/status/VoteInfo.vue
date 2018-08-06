@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>선거 정보</h1>
-    <h5>테이블 행을 누르면 자세한 정보를 볼 수 있습니다</h5>
-
+    
     <div v-if="loaded && data" class="virTable">
+      <h5>테이블 행을 누르면 자세한 정보를 볼 수 있습니다</h5>
       <div class="virThead">
         <div :style="rowStyle">
           <div v-for="index in tableHead.length"
@@ -40,9 +40,7 @@
         </div>
       </div>
     </div>
-    <h2 v-else>
-      {{errorMsg}}
-    </h2>
+    <fetch-failed v-else />
 
     <div v-if="listLoaded" class="itemWrapper">
       <CandidateItem
@@ -64,11 +62,13 @@ import moment from 'moment'
 
 import ProgressBar from '../../components/common/ProgressBar'
 import CandidateItem from '../../components/common/CandidateItem'
+import FetchFailed from '../../components/common/FetchFailed';
 import { getVoteInfo, getVoteInfoDetail } from '../../api'
 
 export default {
   name: 'VoteInfo',
   data: () => ({
+    tableHead: ['선거 번호', '대상', '투표 이름', '시간'],
     data: null,
     loaded: false,
     candidateList: [],
@@ -92,10 +92,10 @@ export default {
       justifyContent: 'center',
     },
     tdLength: [
-      { width: '7vw' },
-      { width: '5vw' },
-      { width: '30vw' },
-      { width: '30vw' },
+      { width: '100px' },
+      { width: '100px' },
+      { width: '300px' },
+      { width: '500px' },
     ],
     rowStyle: {
       'display': 'flex',
@@ -119,9 +119,6 @@ export default {
       return this.hoverIndex===index;
     },
   },
-  created () {
-    this.tableHead = ['선거 번호', '대상', '투표 이름', '시간']
-  },
   async mounted(){
     this.$eventBus.$emit('loading', true);
     try {
@@ -130,7 +127,7 @@ export default {
       if(data){
         this.data = data.data;
       } else {
-        alert('데이터를 가져오는데 실패했습니다!')
+        alert('데이터를 가져오는데 실패했습니다!');
       }
     } catch(err){
       this.errorMsg = '서버에서 데이터를 불러올 수 없습니다.';
@@ -146,14 +143,15 @@ export default {
   },
   components: {
     CandidateItem,
-    ProgressBar
+    ProgressBar,
+    FetchFailed
   },
 }
 </script>
 
 <style scoped>
 .virTable {
-  width: 70vw;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -170,8 +168,8 @@ export default {
 .item {
   border: 1px solid #72D4FF;
   width: 100%;
-  margin: 1rem;
-  padding: 1rem;
+  margin: 5px;
+  padding: 5px;
 }
 
 </style>

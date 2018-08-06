@@ -6,7 +6,8 @@
       <md-input v-model="id" @change="inputHandler"></md-input>
     </md-field>
     <div>
-      <h4>{{ msg }}</h4>
+      <fetch-failed v-if="msg==='error'"/>
+      <h4 v-else>{{ msg }}</h4>
     </div>
   </div>
 </template>
@@ -14,9 +15,13 @@
 <script>
 import Rx from 'rxjs'
 import { getSuffrage, voteCheck } from '../../api';
+import FetchFailed from '../../components/common/FetchFailed';
 
 export default {
   name: 'Check',
+  components: {
+    FetchFailed
+  },
   data: () => ({
     loaded: false,
     id: '',
@@ -41,12 +46,12 @@ export default {
             if(data){
               this.msg = data.message
             } else {
-              this.msg = 'API 오류 발생';
+              this.msg = 'error';
             }
             this.loaded = true;
           })
           .catch(err => {
-            this.msg = '서버에서 데이터를 불러올 수 없습니다.';
+            this.msg = 'error';
           });
       }
     },
@@ -59,7 +64,8 @@ export default {
   },
   watch: {
     id(val, oldVal) {
-      if(val.length < 4){
+      const {length} = val;
+      if(length !==0 && length < 4){
         this.loaded = false;
         this.msg = '5글자 이상 입력하고 엔터키를 누르세요'
       } else {
@@ -68,6 +74,7 @@ export default {
     },
     '$route.path'(val){
       this.id = '';
+      this.msg = '';
     }
   },
   beforeCreate(){

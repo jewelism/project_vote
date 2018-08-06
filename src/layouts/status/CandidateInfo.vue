@@ -35,6 +35,7 @@
 <script>
 import { getCandidateList, getCandidate } from '../../api';
 import CandidateItem from '../../components/common/CandidateItem';
+import FetchFailed from '../../components/common/FetchFailed';
 
 export default {
   name: 'CandidateInfo',
@@ -90,7 +91,8 @@ export default {
     },
   },
   components: {
-    CandidateItem
+    CandidateItem,
+    FetchFailed
   }
 }
 </script>
